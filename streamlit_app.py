@@ -10,6 +10,7 @@ import librosa
 import gtts
 from playsound import playsound
 import random
+import vlc
 
 def extract_beat(filename):
     audio_data = '{}.wav'.format(filename)
