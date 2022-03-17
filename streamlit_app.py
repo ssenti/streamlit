@@ -63,22 +63,21 @@ song = st.radio(
 filename = song
 beat_intervals = extract_beat(filename)
 
-#message = st.write("Song Loading..")
 if st.button('Play'):
-    #message = st.write("Song Ready!")
     p = vlc.MediaPlayer('songs/{}'.format(filename))
     p.play()
     count = 0
     for i in beat_intervals:
         time.sleep(i)
-        ans = st.radio("Keep Playing?",('Yes', 'No'), key=count)
-        if ans == 'No':
-            break
-        else:
-            if count == 0:
-                play_sound()
-                count = 1
+        if count == 0:
+            play_sound()
+            ans = st.radio("Keep Playing?",('Yes', 'No'), key=count)
+            if ans == 'No':
+                p.stop()
+                break
             else:
-                options = ['dont_play_sound()', 'play_sound()']
-                eval(random.choices(options, weights = (ratio, 100-ratio))[0])
-        count += 1
+                count = 1
+                continue
+        else:
+            options = ['dont_play_sound()', 'play_sound()']
+            eval(random.choices(options, weights = (ratio, 100-ratio))[0])
