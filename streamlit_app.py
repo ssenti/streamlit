@@ -73,6 +73,7 @@ if st.button('Play'):
         time.sleep(i)
         ans = st.radio("Keep Playing?",('Yes', 'No'), key=count)
         if ans == 'No':
+            p.stop()
             break
         else:
             if count == 0:
@@ -81,5 +82,7 @@ if st.button('Play'):
             else:
                 options = ['dont_play_sound()', 'play_sound()']
                 eval(random.choices(options, weights = (ratio, 100-ratio))[0])
+            if ans == 'No':
+                p.stop()
+                break
         count += 1
-    p.stop()
