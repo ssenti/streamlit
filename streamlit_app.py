@@ -89,4 +89,3 @@ if st.button('Play'):
                 eval(random.choices(options, weights = (ratio, 100-ratio))[0])
         count += 1
     p.stop()
-p.stop()
