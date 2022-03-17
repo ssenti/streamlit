@@ -69,24 +69,19 @@ if st.button('Play'):
     p = vlc.MediaPlayer('songs/{}'.format(filename))
     p.play()
     count = 0
+    ans = st.radio("Keep Playing?",('Yes', 'No'))
     for i in beat_intervals:
         time.sleep(i)
-        ans = st.empty()
-        ans.empty()
-        ans = st.radio("Keep Playing?",('Yes', 'No'), key=count)
-        if count > 20:
+        if ans == 'No':
             p.stop()
+            time.sleep(3)
             break
         else:
-            if ans == 'No':
-                p.stop()
-                break
+            if count == 0:
+                play_sound()
+                count = 1
             else:
-                if count == 0:
-                    play_sound()
-                    count = 1
-                else:
-                    options = ['dont_play_sound()', 'play_sound()']
-                    eval(random.choices(options, weights = (ratio, 100-ratio))[0])
+                options = ['dont_play_sound()', 'play_sound()']
+                eval(random.choices(options, weights = (ratio, 100-ratio))[0])
         count += 1
     p.stop()
