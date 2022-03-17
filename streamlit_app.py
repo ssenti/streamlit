@@ -63,9 +63,7 @@ ratio = 50
 p = vlc.MediaPlayer('{}.wav'.format(filename))
 p.play()
 
-button = st.button('Click me')
-
-if button == True:
+if st.checkbox('Stop'):
     p.stop()
 
 count = 0
