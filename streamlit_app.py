@@ -40,6 +40,7 @@ def play_sound():
 def dont_play_sound():
     pass
 
+
 #word list generator
 lyrics = "To all the ladies in the place with style and grace"
 
@@ -51,6 +52,11 @@ for i in range(len(word_list)):
 for i in word_list:
     gtts.gTTS(i).save("sounds/{}.mp3".format(i))
 
+
+button = st.button('Click me')
+
+if button == True:
+    p.stop()
 
 #choose file
 filename = 'firefly_inst'
@@ -69,8 +75,3 @@ for i in beat_intervals:
     else:
         options = ['dont_play_sound()', 'play_sound()']
         eval(random.choices(options, weights = (ratio, 100-ratio))[0])
-
-button = st.button('Click me')
-
-if button == True:
-    p.stop()
