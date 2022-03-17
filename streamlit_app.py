@@ -19,7 +19,15 @@ st.title("Random Rap Filler Generator")
 #word list generator
 lyrics = "yeah ay braww whatsup hello nice letsgo"
 
-word_list = lyrics.split()
+word_list = ["I miss you in the morning",
+                "I miss you late at night",
+                "Just to think about you"
+                "Is my joy and my delight",
+                "I can't wait to see you",
+                "Please hurry and come back",
+                "You always make me happy",
+                "You have that special knack!"]
+#lyrics.split()
 
 for i in range(len(word_list)):
     word_list[i] = word_list[i].lower()
