@@ -14,6 +14,8 @@ import vlc
 import time
 import glob
 
+st.title("Random Rap Filler Generator")
+
 #word list generator
 lyrics = "To all the ladies in the place with style and grace"
 
@@ -47,7 +49,7 @@ def extract_beat(filename):
     return beat_intervals
 
 
-ratio = 100-st.slider('How often should we rap?', 0, 100, 25)
+ratio = 100-st.slider('How often should we fill the rap?', 0, 100, 25)
 
 song_names = []
 for filename in glob.glob('songs/*.wav'):
