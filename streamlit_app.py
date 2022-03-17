@@ -17,7 +17,7 @@ import glob
 st.title("Random Rap Filler Generator")
 
 #word list generator
-lyrics = "yeah ayy braww whatsup hello nice chicken"
+lyrics = "yeah ay braww whatsup hello nice letsgo"
 
 word_list = lyrics.split()
 
@@ -60,6 +60,8 @@ song = st.radio(
      tuple(song_names))
 
 
+#ans = st.radio("Keep Playing?",('Yes', 'No'), key=count)
+
 filename = song
 beat_intervals = extract_beat(filename)
 
@@ -71,12 +73,10 @@ if st.button('Play'):
         time.sleep(i)
         if count == 0:
             play_sound()
-            global ans
-            ans = st.radio("Keep Playing?",('Yes', 'No'), key=count)
-            count = 1
-        if ans == 'No':
+        if count > 10:
             p.stop()
             break
         else:
             options = ['dont_play_sound()', 'play_sound()']
             eval(random.choices(options, weights = (ratio, 100-ratio))[0])
+        count += 1
