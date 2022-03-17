@@ -62,7 +62,7 @@ filename = song
 beat_intervals = extract_beat(filename)
 
 if type(song) == str:
-    p = vlc.MediaPlayer('songs/{}.wav'.format(filename))
+    p = vlc.MediaPlayer('songs/{}'.format(filename))
     p.play()
 
     if st.button('stop'):
