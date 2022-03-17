@@ -59,7 +59,7 @@ for i in word_list:
 
 
 
-
+print(beat_intervals)
 
 ratio = 50
 
