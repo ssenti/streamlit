@@ -12,26 +12,30 @@ from playsound import playsound
 import random
 import vlc
 
-def extract_beat(filename):
-    audio_data = '{}.wav'.format(filename)
-    x , sr = librosa.load(audio_data)
+#choose file
+filename = 'firefly_inst'
 
-    # load the audio as a waveform `y`, store the sampling rate as `sr`
-    # run the default beat tracker
-    # convert the frame indices of beat events into timestamps
-    x, sr = librosa.load(audio_data)
-    tempo, beat_frames = librosa.beat.beat_track(y=x, sr=sr)
-    beat_times = librosa.frames_to_time(beat_frames, sr=sr)
+#extract_beat(filename)
+#def extract_beat(filename):
+audio_data = '{}.wav'.format(filename)
+x , sr = librosa.load(audio_data)
 
-    beat_intervals = []
-    for i in range(len(beat_times)-1):
-        beat_intervals.append(beat_times[i+1]-beat_times[i])
-    beat_intervals.insert(0, beat_times[0])
+# load the audio as a waveform `y`, store the sampling rate as `sr`
+# run the default beat tracker
+# convert the frame indices of beat events into timestamps
+x, sr = librosa.load(audio_data)
+tempo, beat_frames = librosa.beat.beat_track(y=x, sr=sr)
+beat_times = librosa.frames_to_time(beat_frames, sr=sr)
 
-    #beat_times
-    #beat_intervals
-    #print(type(x), type(sr))
-    #print('Estimated tempo: {:.2f} beats per minute'.format(tempo))
+beat_intervals = []
+for i in range(len(beat_times)-1):
+    beat_intervals.append(beat_times[i+1]-beat_times[i])
+beat_intervals.insert(0, beat_times[0])
+
+#beat_times
+#beat_intervals
+#print(type(x), type(sr))
+#print('Estimated tempo: {:.2f} beats per minute'.format(tempo))
 
 def play_sound():
     r = random.choice(word_list)
@@ -54,9 +58,7 @@ for i in word_list:
 
 
 
-#choose file
-filename = 'firefly_inst'
-extract_beat(filename)
+
 
 ratio = 50
 
