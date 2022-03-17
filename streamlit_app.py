@@ -59,15 +59,15 @@ song = st.radio(
      "Which song should we play?",
      tuple(song_names))
 
-#st.write("Song Loading..")
 
 if st.button("Generate Song"):
+    loading = st.write("Song Loading..")
     filename = song
     beat_intervals = extract_beat(filename)
 
 
     if st.button('Play'):
-
+        loading = False
         p = vlc.MediaPlayer('songs/{}'.format(filename))
         p.play()
 
