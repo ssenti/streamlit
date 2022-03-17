@@ -73,7 +73,7 @@ if st.button('Play'):
         time.sleep(i)
         if count == 0:
             play_sound()
-        if count > 10:
+        if count > 30:
             p.stop()
             break
         else:
