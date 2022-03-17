@@ -69,3 +69,8 @@ for i in beat_intervals:
     else:
         options = ['dont_play_sound()', 'play_sound()']
         eval(random.choices(options, weights = (ratio, 100-ratio))[0])
+
+button = st.button('Click me')
+
+if button == True:
+    p.stop()
