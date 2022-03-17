@@ -53,10 +53,6 @@ for i in word_list:
     gtts.gTTS(i).save("sounds/{}.mp3".format(i))
 
 
-button = st.button('Click me')
-
-if button == True:
-    p.stop()
 
 #choose file
 filename = 'firefly_inst'
@@ -66,6 +62,12 @@ ratio = 50
 
 p = vlc.MediaPlayer('{}.wav'.format(filename))
 p.play()
+
+button = st.button('Click me')
+
+if button == True:
+    p.stop()
+
 count = 0
 for i in beat_intervals:
     time.sleep(i)
