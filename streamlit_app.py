@@ -53,8 +53,11 @@ beat_intervals = extract_beat(filename)
 
 p = vlc.MediaPlayer('{}.wav'.format(filename))
 p.play()
-count = 0
 
+if st.button('stop'):
+     p.stop()
+
+count = 0
 for i in beat_intervals:
     time.sleep(i)
     if count == 0:
@@ -63,9 +66,3 @@ for i in beat_intervals:
     else:
         options = ['dont_play_sound()', 'play_sound()']
         eval(random.choices(options, weights = (ratio, 100-ratio))[0])
-
-
-
-
-if st.button('stop'):
-     p.stop()
