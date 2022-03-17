@@ -17,7 +17,7 @@ import glob
 st.title("Random Rap Filler Generator")
 
 #word list generator
-lyrics = "To all the ladies in the place with style and grace"
+lyrics = "yeah ayy braww whatsup hello nice chicken"
 
 word_list = lyrics.split()
 
@@ -71,13 +71,12 @@ if st.button('Play'):
         time.sleep(i)
         if count == 0:
             play_sound()
+            global ans
             ans = st.radio("Keep Playing?",('Yes', 'No'), key=count)
-            if ans == 'No':
-                p.stop()
-                break
-            else:
-                count = 1
-                continue
+            count = 1
+        if ans == 'No':
+            p.stop()
+            break
         else:
             options = ['dont_play_sound()', 'play_sound()']
             eval(random.choices(options, weights = (ratio, 100-ratio))[0])
