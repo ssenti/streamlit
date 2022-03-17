@@ -78,7 +78,7 @@ if st.button('Play'):
                 ans = st.radio("Keep Playing?",('Yes', 'No'), key =count)
                 if ans == 'Yes':
                     count = 1
-                if ans == 'No'
+                if ans == 'No':
                     p.stop()
                     break
         else:
