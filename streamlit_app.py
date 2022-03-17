@@ -84,4 +84,3 @@ if st.button('Play'):
                 options = ['dont_play_sound()', 'play_sound()']
                 eval(random.choices(options, weights = (ratio, 100-ratio))[0])
         count += 1
-    p.stop()
