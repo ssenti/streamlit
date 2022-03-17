@@ -4,13 +4,15 @@ Here's our first attempt at using data to create a table:
 """
 
 import streamlit as st
+
+
 import librosa
 import gtts
 from playsound import playsound
 import random
 import vlc
 import time
-
+import glob
 
 #word list generator
 lyrics = "To all the ladies in the place with style and grace"
@@ -22,8 +24,6 @@ for i in range(len(word_list)):
 
 for i in word_list:
     gtts.gTTS(i).save("sounds/{}.mp3".format(i))
-
-
 def play_sound():
     r = random.choice(word_list)
     playsound("sounds/{}.mp3".format(r))
@@ -32,7 +32,7 @@ def dont_play_sound():
     pass
 
 def extract_beat(filename):
-    audio_data = '{}.wav'.format(filename)
+    audio_data = 'songs/{}'.format(filename)
     x , sr = librosa.load(audio_data)
 
     x, sr = librosa.load(audio_data)
@@ -46,23 +46,34 @@ def extract_beat(filename):
 
     return beat_intervals
 
-ratio = 50
 
-filename = 'firefly_inst'
+ratio = 100-st.slider('How often should we rap?', 0, 100, 25)
+
+song_names = []
+for filename in glob.glob('songs/*.wav'):
+    song_names.append(filename.split('/', 1)[1])
+
+song = st.radio(
+     "Which song should we play?",
+     tuple(song_names))
+
+
+filename = song
 beat_intervals = extract_beat(filename)
 
-p = vlc.MediaPlayer('{}.wav'.format(filename))
-p.play()
+if type(song) == str:
+    p = vlc.MediaPlayer('songs/{}.wav'.format(filename))
+    p.play()
 
-if st.button('stop'):
-     p.stop()
+    if st.button('stop'):
+         p.stop()
 
-count = 0
-for i in beat_intervals:
-    time.sleep(i)
-    if count == 0:
-        play_sound()
-        count = 1
-    else:
-        options = ['dont_play_sound()', 'play_sound()']
-        eval(random.choices(options, weights = (ratio, 100-ratio))[0])
+    count = 0
+    for i in beat_intervals:
+        time.sleep(i)
+        if count == 0:
+            play_sound()
+            count = 1
+        else:
+            options = ['dont_play_sound()', 'play_sound()']
+            eval(random.choices(options, weights = (ratio, 100-ratio))[0])
