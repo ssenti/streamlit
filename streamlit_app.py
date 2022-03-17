@@ -66,8 +66,8 @@ ratio = 50
 p = vlc.MediaPlayer('{}.wav'.format(filename))
 p.play()
 
-if st.checkbox('Stop'):
-    p.stop()
+if st.button('stop'):
+     p.stop()
 
 count = 0
 for i in beat_intervals:
