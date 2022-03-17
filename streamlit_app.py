@@ -68,11 +68,11 @@ if st.button('Play'):
     #message = st.write("Song Ready!")
     p = vlc.MediaPlayer('songs/{}'.format(filename))
     p.play()
-    p.stop()
     count = 0
     for i in beat_intervals:
         time.sleep(i)
         ans = st.empty()
+        ans.empty()
         ans = st.radio("Keep Playing?",('Yes', 'No'), key=count)
         if count > 20:
             p.stop()
